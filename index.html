@@ -487,11 +487,20 @@
   .sw-founder-callout p { font-size: 14px; color: var(--text-muted); }
 
   /* ---------- Book section ---------- */
-  .sw-book-cover {
-    aspect-ratio: 3 / 4.2;
+  /* .book-cover-image is the required class for the book cover; kept fully
+     visible with object-fit: contain and no cropping. */
+  .book-cover-image,
+  .sw-split-media .book-cover-image {
+    display: block;
+    width: 100%;
+    max-width: 430px;
+    height: auto;
+    max-height: 680px;
+    margin: 0 auto;
+    object-fit: contain;
     object-position: center;
-    box-shadow: 0 24px 48px rgba(0,0,0,0.45);
-    border-radius: 10px;
+    border-radius: 14px;
+    box-shadow: 0 20px 44px rgba(0, 0, 0, 0.34);
   }
   .sw-book-copy .sw-eyebrow { color: var(--gold); }
   .sw-book-sub {
@@ -1136,7 +1145,7 @@
       <div class="sw-container sw-split">
         <div class="sw-split-media">
           <!-- Book cover image -->
-          <img class="sw-book-cover" src="https://images.squarespace-cdn.com/content/682f59a12de6f2156dacf80c/c68cc7e9-9558-4600-b40e-2a3cbf3025ee/IMG_5594.jpeg?content-type=image%2Fjpeg" alt="Cover of Life Be Lifing: So What? Don't Make Excuses, Make Moves by Curtis Lee Corbins">
+          <img class="sw-book-cover book-cover-image" src="https://images.squarespace-cdn.com/content/682f59a12de6f2156dacf80c/5e22936e-68d0-4b0d-9e86-a9b193ffe34d/book-cover.webp?content-type=image%2Fwebp" alt="Cover of Life Be Lifing: So What? Don&rsquo;t Make Excuses, Make Moves by Curtis Lee Corbins" loading="eager">
         </div>
         <div class="sw-book-copy">
           <span class="sw-eyebrow">The Book by Curtis Lee Corbins</span>
