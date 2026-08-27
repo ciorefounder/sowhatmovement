@@ -513,20 +513,47 @@
   .sw-founder-callout p { font-size: 14px; color: var(--text-muted); }
 
   /* ---------- Book section ---------- */
-  /* .book-cover-image is the required class for the book cover; kept fully
-     visible with object-fit: contain and no cropping. */
-  .book-cover-image,
-  .sw-split-media .book-cover-image {
+  /* .book-section-image is the required class for the Book section image;
+     kept fully visible with object-fit: contain and no cropping. */
+  .book-section-image,
+  .sw-split-media .book-section-image {
     display: block;
     width: 100%;
-    max-width: 430px;
+    max-width: 460px;
     height: auto;
-    max-height: 680px;
+    max-height: 720px;
     margin: 0 auto;
     object-fit: contain;
     object-position: center;
     border-radius: 14px;
-    box-shadow: 0 20px 44px rgba(0, 0, 0, 0.34);
+    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.42);
+  }
+  .book-image-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 620px;
+    padding: 20px;
+  }
+  @media (max-width: 900px) {
+    .book-image-wrap {
+      min-height: auto;
+      padding: 16px;
+    }
+    .book-section-image {
+      max-width: 390px;
+      max-height: none;
+    }
+  }
+  @media (max-width: 600px) {
+    .book-image-wrap {
+      padding: 12px;
+    }
+    .book-section-image {
+      width: 100%;
+      max-width: 340px;
+      border-radius: 10px;
+    }
   }
   .sw-book-copy .sw-eyebrow { color: var(--gold); }
   .sw-book-sub {
@@ -1173,12 +1200,18 @@
 
     <!-- ============ SECTION 5: THE BOOK ============ -->
     <section class="sw-section sw-section--navy-deep" id="book">
-      <div class="sw-container sw-split">
-        <div class="sw-split-media">
-          <!-- Replace [BOOK_COVER_IMAGE_URL] with the official book cover or Amazon product image when available. -->
-          <img class="sw-book-cover book-cover-image" src="[BOOK_COVER_IMAGE_URL]" alt="Cover of Life Be Lifing: So What? Don&rsquo;t Make Excuses, Make Moves by Curtis Lee Corbins" loading="eager">
+      <div class="sw-container sw-split book-content">
+        <div class="sw-split-media book-image-wrap">
+          <!-- Book section promotional image -->
+          <img
+            src="https://images.squarespace-cdn.com/content/682f59a12de6f2156dacf80c/c68cc7e9-9558-4600-b40e-2a3cbf3025ee/IMG_5594.jpeg?content-type=image%2Fjpeg"
+            alt="Life Be Lifing So What promotional image featuring Curtis Lee Corbins"
+            class="book-section-image"
+            loading="eager"
+            decoding="async"
+          >
         </div>
-        <div class="sw-book-copy">
+        <div class="sw-book-copy book-copy">
           <span class="sw-eyebrow">The Book by Curtis Lee Corbins</span>
           <h2 class="sw-h2" style="color:#fff;">Life Be Lifing. So What?</h2>
           <p class="sw-book-sub">A motivational guide for people building through real obstacles.</p>
