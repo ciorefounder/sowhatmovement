@@ -309,31 +309,57 @@
     font-size: 13.5px;
     color: rgba(255,255,255,0.55);
   }
-  .sw-hero-media {
-    position: relative;
-  }
-  .sw-hero-media::before {
-    content: "";
-    position: absolute;
-    inset: -18px;
-    background: linear-gradient(135deg, rgba(200,160,74,0.35), rgba(46,124,246,0.15) 60%, transparent);
-    border-radius: 20px;
-    z-index: 0;
-  }
-  .sw-hero-img {
-    position: relative;
-    z-index: 1;
+  .hero-image-frame {
     width: 100%;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    object-position: top center;
-    border-radius: 16px;
-    border: 1px solid rgba(255,255,255,0.15);
-    box-shadow: 0 30px 60px rgba(3, 27, 58, 0.5);
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow: hidden;
+    border-radius: 22px;
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.14),
+      rgba(255, 255, 255, 0.04)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  .hero-image {
+    display: block;
+    width: 100%;
+    max-width: 475px;
+    height: auto;
+    max-height: 680px;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 14px;
+    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.42);
+  }
+  @media (max-width: 900px) {
+    .hero-image-frame {
+      min-height: auto;
+      padding: 18px;
+    }
+    .hero-image {
+      max-width: 390px;
+      max-height: none;
+    }
+  }
+  @media (max-width: 600px) {
+    .hero-image-frame {
+      padding: 12px;
+      border-radius: 16px;
+    }
+    .hero-image {
+      width: 100%;
+      max-width: 340px;
+      border-radius: 10px;
+    }
   }
   @media (max-width: 900px) {
     .sw-hero-inner { grid-template-columns: 1fr; }
-    .sw-hero-media { order: -1; max-width: 340px; margin: 0 auto 12px; }
+    .hero-image-frame { order: -1; max-width: 420px; margin: 0 auto 12px; }
   }
 
   /* ---------- Gap section ---------- */
@@ -1023,9 +1049,14 @@
           <p class="sw-hero-trust">Open to entrepreneurs in Dallas Fort Worth and beyond.</p>
         </div>
 
-        <div class="sw-hero-media">
-          <!-- Hero image: swap this URL any time you update the photo in Squarespace -->
-          <img class="sw-hero-img" src="https://orca-olive-l298.squarespace.com/config/asset-library/file-details/5e22936e-68d0-4b0d-9e86-a9b193ffe34d" alt="Curtis Lee Corbins, founder of The So What Movement">
+        <div class="hero-image-frame">
+          <img
+            src="https://images.squarespace-cdn.com/content/682f59a12de6f2156dacf80c/5e22936e-68d0-4b0d-9e86-a9b193ffe34d/book-cover.webp?content-type=image%2Fwebp"
+            alt="Life Be Lifing So What promotional image featuring Curtis Lee Corbins"
+            class="hero-image"
+            loading="eager"
+            decoding="async"
+          >
         </div>
       </div>
     </section>
@@ -1144,8 +1175,8 @@
     <section class="sw-section sw-section--navy-deep" id="book">
       <div class="sw-container sw-split">
         <div class="sw-split-media">
-          <!-- Book cover image -->
-          <img class="sw-book-cover book-cover-image" src="https://images.squarespace-cdn.com/content/682f59a12de6f2156dacf80c/5e22936e-68d0-4b0d-9e86-a9b193ffe34d/book-cover.webp?content-type=image%2Fwebp" alt="Cover of Life Be Lifing: So What? Don&rsquo;t Make Excuses, Make Moves by Curtis Lee Corbins" loading="eager">
+          <!-- Replace [BOOK_COVER_IMAGE_URL] with the official book cover or Amazon product image when available. -->
+          <img class="sw-book-cover book-cover-image" src="[BOOK_COVER_IMAGE_URL]" alt="Cover of Life Be Lifing: So What? Don&rsquo;t Make Excuses, Make Moves by Curtis Lee Corbins" loading="eager">
         </div>
         <div class="sw-book-copy">
           <span class="sw-eyebrow">The Book by Curtis Lee Corbins</span>
