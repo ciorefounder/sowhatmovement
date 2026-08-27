@@ -1,0 +1,1812 @@
+<!-- ============================================================
+     THE SO WHAT MOVEMENT: Single-Page Site
+     Paste this entire block into a Squarespace Code Block.
+     Search for [BRACKETED_PLACEHOLDERS] to find every URL/asset
+     that needs to be replaced before publishing.
+     ============================================================ -->
+<style>
+  /* ---------- Design tokens ---------- */
+  .sw-root {
+    --navy: #062A5E;
+    --navy-deep: #031B3A;
+    --royal: #135DD8;
+    --accent-blue: #2E7CF6;
+    --gold: #C8A04A;
+    --white: #FFFFFF;
+    --bg-light: #F5F7FB;
+    --text-body: #20252C;
+    --text-muted: #667085;
+    --border-hair: rgba(6, 42, 94, 0.12);
+    --shadow-card: 0 1px 2px rgba(6, 42, 94, 0.06), 0 8px 24px rgba(6, 42, 94, 0.06);
+    --shadow-card-hover: 0 4px 10px rgba(6, 42, 94, 0.10), 0 16px 32px rgba(6, 42, 94, 0.10);
+    --radius-card: 14px;
+    --radius-pill: 999px;
+    --font-stack: Inter, Arial, Helvetica, "Segoe UI", sans-serif;
+    --container: 1180px;
+
+    font-family: var(--font-stack);
+    color: var(--text-body);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+  }
+
+  .sw-root * { box-sizing: border-box; }
+  .sw-root img { max-width: 100%; display: block; }
+  .sw-root a { color: inherit; text-decoration: none; }
+  .sw-root ul, .sw-root ol { margin: 0; padding: 0; list-style: none; }
+  .sw-root h1, .sw-root h2, .sw-root h3, .sw-root h4, .sw-root p { margin: 0; }
+  .sw-root section { position: relative; }
+
+  .sw-root button, .sw-root input, .sw-root select, .sw-root textarea {
+    font-family: inherit;
+    font-size: 16px;
+  }
+
+  /* Visible keyboard focus everywhere */
+  .sw-root a:focus-visible,
+  .sw-root button:focus-visible,
+  .sw-root input:focus-visible,
+  .sw-root select:focus-visible,
+  .sw-root textarea:focus-visible,
+  .sw-root summary:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  .sw-container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .sw-eyebrow {
+    display: inline-block;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .sw-eyebrow--dark { color: var(--gold); }
+
+  .sw-h2 {
+    font-size: clamp(28px, 3.6vw, 40px);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    text-transform: uppercase;
+  }
+
+  .sw-lede {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 620px;
+    margin-top: 14px;
+  }
+
+  .sw-section {
+    padding: 88px 0;
+  }
+  @media (max-width: 720px) {
+    .sw-section { padding: 56px 0; }
+  }
+
+  .sw-section--light { background: var(--bg-light); }
+  .sw-section--white { background: var(--white); }
+  .sw-section--navy { background: var(--navy); color: var(--white); }
+  .sw-section--navy-deep { background: var(--navy-deep); color: var(--white); }
+  .sw-section--offwhite { background: #EFF3FA; }
+
+  .sw-section--navy .sw-h2,
+  .sw-section--navy-deep .sw-h2 { color: var(--white); }
+  .sw-section--navy .sw-lede,
+  .sw-section--navy-deep .sw-lede { color: rgba(255,255,255,0.72); }
+
+  /* ---------- Buttons ---------- */
+  .sw-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 15px 28px;
+    border-radius: var(--radius-pill);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.01em;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    white-space: nowrap;
+  }
+  .sw-btn:active { transform: translateY(1px); }
+
+  .sw-btn--primary {
+    background: var(--royal);
+    color: var(--white);
+  }
+  .sw-btn--primary:hover { background: var(--accent-blue); box-shadow: 0 8px 20px rgba(19, 93, 216, 0.32); }
+
+  .sw-btn--gold {
+    background: var(--gold);
+    color: var(--navy-deep);
+  }
+  .sw-btn--gold:hover { background: #d8b365; box-shadow: 0 8px 20px rgba(200, 160, 74, 0.35); }
+
+  .sw-btn--outline-light {
+    background: transparent;
+    border-color: rgba(255,255,255,0.5);
+    color: var(--white);
+  }
+  .sw-btn--outline-light:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+
+  .sw-btn--outline-navy {
+    background: transparent;
+    border-color: var(--navy);
+    color: var(--navy);
+  }
+  .sw-btn--outline-navy:hover { background: var(--navy); color: var(--white); }
+
+  .sw-btn--sm { padding: 11px 20px; font-size: 13.5px; }
+
+  .sw-btn-row { display: flex; flex-wrap: wrap; gap: 14px; }
+
+  @media (max-width: 560px) {
+    .sw-btn-row { flex-direction: column; }
+    .sw-btn { width: 100%; }
+  }
+
+  /* ---------- Navigation ---------- */
+  .sw-nav {
+    position: sticky;
+    top: 0;
+    z-index: 500;
+    background: rgba(3, 27, 58, 0.96);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    transition: padding 0.25s ease, box-shadow 0.25s ease;
+  }
+  .sw-nav.is-scrolled { box-shadow: 0 6px 24px rgba(3, 27, 58, 0.25); }
+
+  .sw-nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    max-width: var(--container);
+    margin: 0 auto;
+    transition: padding 0.25s ease;
+  }
+  .sw-nav.is-scrolled .sw-nav-inner { padding-top: 12px; padding-bottom: 12px; }
+
+  .sw-logo {
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+  .sw-logo span { color: var(--gold); }
+
+  .sw-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  .sw-nav-links a {
+    color: rgba(255,255,255,0.82);
+    font-size: 14.5px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    padding: 6px 2px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .sw-nav-links a:hover { color: var(--white); border-color: var(--gold); }
+
+  .sw-nav-cta { display: flex; align-items: center; gap: 20px; }
+
+  .sw-nav-mobile-cta { display: none; }
+
+  .sw-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 42px;
+    height: 42px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .sw-hamburger span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--white);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .sw-hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .sw-hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .sw-hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  @media (max-width: 900px) {
+    .sw-nav-links {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--navy-deep);
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 8px 24px 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: none;
+    }
+    .sw-nav-links.is-open { display: flex; }
+    .sw-nav-links a { padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .sw-nav-cta .sw-nav-join { display: none; }
+    .sw-nav-mobile-cta { display: inline-flex !important; margin-top: 12px; width: 100%; }
+    .sw-hamburger { display: flex; }
+  }
+
+  /* ---------- Hero ---------- */
+  .sw-hero {
+    background:
+      radial-gradient(1200px 500px at 85% -10%, rgba(46, 124, 246, 0.35), transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, rgba(19, 93, 216, 0.25), transparent 60%),
+      linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 100%);
+    color: var(--white);
+    padding: 76px 0 88px;
+  }
+  .sw-hero-inner {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .sw-hero-label {
+    display: inline-block;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 8px 14px;
+    border: 1px solid rgba(200, 160, 74, 0.45);
+    border-radius: var(--radius-pill);
+    margin-bottom: 22px;
+  }
+  .sw-hero-heading {
+    font-size: clamp(40px, 6vw, 68px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+  .sw-hero-lead {
+    font-size: 19px;
+    color: rgba(255,255,255,0.9);
+    max-width: 540px;
+    margin-bottom: 12px;
+  }
+  .sw-hero-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.68);
+    max-width: 540px;
+    margin-bottom: 12px;
+  }
+  .sw-hero-sub + .sw-btn-row { margin-top: 22px; }
+  .sw-hero-trust {
+    margin-top: 20px;
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.55);
+  }
+  .sw-hero-media {
+    position: relative;
+  }
+  .sw-hero-media::before {
+    content: "";
+    position: absolute;
+    inset: -18px;
+    background: linear-gradient(135deg, rgba(200,160,74,0.35), rgba(46,124,246,0.15) 60%, transparent);
+    border-radius: 20px;
+    z-index: 0;
+  }
+  .sw-hero-img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 30px 60px rgba(3, 27, 58, 0.5);
+  }
+  @media (max-width: 900px) {
+    .sw-hero-inner { grid-template-columns: 1fr; }
+    .sw-hero-media { order: -1; max-width: 340px; margin: 0 auto 12px; }
+  }
+
+  /* ---------- Gap section ---------- */
+  .sw-gap-copy { max-width: 760px; margin: 0 auto; text-align: center; }
+  .sw-gap-copy p { margin-top: 16px; color: var(--text-muted); font-size: 17px; }
+  .sw-gap-copy .sw-h2 { margin-bottom: 6px; }
+  .sw-gap-bold {
+    margin-top: 24px;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .sw-card-row {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 780px) {
+    .sw-card-row { grid-template-columns: 1fr; }
+  }
+  .sw-mini-card {
+    background: var(--white);
+    border: 1px solid var(--border-hair);
+    border-radius: var(--radius-card);
+    padding: 28px 24px;
+    box-shadow: var(--shadow-card);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .sw-mini-card:hover { box-shadow: var(--shadow-card-hover); transform: translateY(-2px); }
+  .sw-mini-card h3 {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .sw-mini-card p { color: var(--text-muted); font-size: 15px; }
+  .sw-mini-card .sw-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--white);
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+
+  /* ---------- Service cards (Section 3) ---------- */
+  .sw-services-head { max-width: 640px; margin-bottom: 44px; }
+  .sw-services-head .sw-h2 { margin-bottom: 12px; }
+  .sw-service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 900px) {
+    .sw-service-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .sw-service-grid { grid-template-columns: 1fr; }
+  }
+  .sw-service-card {
+    background: var(--white);
+    border: 1px solid var(--border-hair);
+    border-radius: var(--radius-card);
+    padding: 28px 24px;
+    box-shadow: var(--shadow-card);
+    transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  }
+  .sw-service-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-3px);
+    border-color: rgba(19, 93, 216, 0.25);
+  }
+  .sw-service-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--bg-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    color: var(--royal);
+  }
+  .sw-service-icon svg { width: 22px; height: 22px; }
+  .sw-service-card h3 { font-size: 17px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+  .sw-service-card p { color: var(--text-muted); font-size: 15px; }
+
+  .sw-note-panel {
+    margin-top: 32px;
+    background: var(--bg-light);
+    border: 1px solid var(--border-hair);
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  /* ---------- Split layouts (Founder / Book) ---------- */
+  .sw-split {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .sw-split.sw-split--reverse { grid-template-columns: 1.1fr 0.9fr; }
+  @media (max-width: 900px) {
+    .sw-split, .sw-split.sw-split--reverse { grid-template-columns: 1fr; }
+    .sw-split .sw-split-media { order: -1; }
+  }
+
+  .sw-split-media img {
+    width: 100%;
+    border-radius: var(--radius-card);
+    object-fit: cover;
+  }
+
+  .sw-founder-frame {
+    background: var(--white);
+    border: 1px solid rgba(6, 42, 94, 0.18);
+    border-radius: var(--radius-card);
+    padding: 22px;
+    box-shadow: var(--shadow-card);
+  }
+  .sw-founder-img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 6px;
+  }
+
+  .sw-founder-copy p { margin-top: 14px; color: var(--text-muted); font-size: 16.5px; }
+  .sw-founder-copy .sw-h2 { margin-bottom: 6px; }
+
+  .sw-founder-callout {
+    margin-top: 32px;
+    background: var(--white);
+    border: 1px solid var(--border-hair);
+    border-radius: var(--radius-card);
+    padding: 22px 24px;
+    box-shadow: var(--shadow-card);
+  }
+  .sw-founder-callout h4 { font-size: 15.5px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+  .sw-founder-callout p { font-size: 14px; color: var(--text-muted); }
+
+  /* ---------- Book section ---------- */
+  .sw-book-cover {
+    aspect-ratio: 3 / 4.2;
+    object-position: center;
+    box-shadow: 0 24px 48px rgba(0,0,0,0.45);
+    border-radius: 10px;
+  }
+  .sw-book-copy .sw-eyebrow { color: var(--gold); }
+  .sw-book-sub {
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    margin-top: 10px;
+    margin-bottom: 6px;
+  }
+  .sw-book-copy p.sw-body { margin-top: 14px; color: rgba(255,255,255,0.75); font-size: 16px; }
+
+  .sw-quote-block {
+    margin: 30px 0;
+    padding: 22px 24px;
+    border-left: 3px solid var(--gold);
+    background: rgba(255,255,255,0.05);
+    border-radius: 0 10px 10px 0;
+    font-size: 20px;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--white);
+  }
+
+  .sw-moves-heading { margin-bottom: 18px; margin-top: 34px; font-size: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.03em; }
+
+  .sw-moves-list { display: flex; flex-direction: column; gap: 12px; }
+  .sw-moves-item {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+  }
+  .sw-moves-letter {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--gold);
+    color: var(--navy-deep);
+    font-weight: 800;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sw-moves-item h4 { font-size: 15.5px; font-weight: 700; color: var(--white); margin-bottom: 3px; }
+  .sw-moves-item p { font-size: 14.5px; color: rgba(255,255,255,0.65); }
+
+  .sw-book-note { margin-top: 16px; font-size: 13.5px; color: rgba(255,255,255,0.55); }
+
+  /* ---------- Steps (How membership works) ---------- */
+  .sw-steps-head { max-width: 620px; margin-bottom: 44px; }
+  .sw-steps-head .sw-h2 { margin-bottom: 10px; }
+  .sw-steps-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 900px) {
+    .sw-steps-row { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) {
+    .sw-steps-row { grid-template-columns: 1fr; }
+  }
+  .sw-step {
+    position: relative;
+    padding-top: 8px;
+  }
+  .sw-step-num {
+    font-size: 34px;
+    font-weight: 800;
+    color: rgba(6, 42, 94, 0.14);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .sw-step h3 { font-size: 16.5px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+  .sw-step p { font-size: 14.5px; color: var(--text-muted); }
+  .sw-steps-cta { margin-top: 44px; text-align: center; }
+
+  /* ---------- Membership pricing ---------- */
+  .sw-pricing-head { text-align: center; max-width: 640px; margin: 0 auto 48px; }
+  .sw-pricing-head .sw-h2 { margin-bottom: 10px; }
+  .sw-pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 980px) {
+    .sw-pricing-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .sw-pricing-grid { grid-template-columns: 1fr; }
+  }
+  .sw-price-card {
+    background: var(--white);
+    border: 1px solid var(--border-hair);
+    border-radius: var(--radius-card);
+    padding: 28px 24px;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .sw-price-card:hover { box-shadow: var(--shadow-card-hover); transform: translateY(-3px); }
+  .sw-price-card--featured {
+    border: 2px solid var(--gold);
+    position: relative;
+  }
+  .sw-price-badge {
+    position: absolute;
+    top: -13px;
+    left: 22px;
+    background: var(--gold);
+    color: var(--navy-deep);
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: var(--radius-pill);
+  }
+  .sw-price-label {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: var(--royal);
+    margin-bottom: 10px;
+  }
+  .sw-price-card h3 { font-size: 19px; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
+  .sw-price-amount { font-size: 14px; color: var(--text-muted); font-style: italic; margin-bottom: 14px; }
+  .sw-price-best { font-size: 14px; color: var(--text-muted); margin-bottom: 18px; }
+  .sw-price-includes { display: flex; flex-direction: column; gap: 9px; margin-bottom: 24px; flex: 1; }
+  .sw-price-includes li { font-size: 14px; color: var(--text-body); padding-left: 22px; position: relative; }
+  .sw-price-includes li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(19, 93, 216, 0.12);
+    box-shadow: inset 0 0 0 2px var(--royal);
+  }
+  .sw-price-card .sw-btn { width: 100%; }
+
+  .sw-eligibility-panel {
+    margin-top: 44px;
+    background: var(--navy);
+    color: var(--white);
+    border-radius: var(--radius-card);
+    padding: 30px 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .sw-eligibility-panel h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+  .sw-eligibility-panel p { font-size: 14.5px; color: rgba(255,255,255,0.72); max-width: 560px; }
+
+  /* ---------- Big Move Fund ---------- */
+  .sw-bmf-layout {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .sw-bmf-layout { grid-template-columns: 1fr; }
+  }
+  .sw-bmf-flyer {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: var(--radius-card);
+    padding: 20px;
+  }
+  .sw-bmf-flyer img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+  .sw-flyer-caption--light { color: rgba(255,255,255,0.6); }
+  .sw-flyer-caption {
+    margin-top: 14px;
+    font-size: 13.5px;
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  .sw-bmf-head { max-width: 700px; margin-bottom: 20px; }
+  .sw-bmf-lead { font-size: 19px; color: rgba(255,255,255,0.88); margin-bottom: 16px; }
+  .sw-bmf-body { font-size: 16px; color: rgba(255,255,255,0.7); margin-top: 14px; max-width: 700px; }
+
+  .sw-bmf-grid {
+    margin-top: 44px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 32px;
+    align-items: start;
+  }
+  @media (max-width: 860px) {
+    .sw-bmf-grid { grid-template-columns: 1fr; }
+  }
+
+  .sw-checklist-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: var(--radius-card);
+    padding: 26px;
+  }
+  .sw-checklist-card h3 { font-size: 15.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 16px; }
+  .sw-checklist { display: flex; flex-direction: column; gap: 12px; }
+  .sw-checklist li {
+    display: flex;
+    gap: 10px;
+    font-size: 14.5px;
+    color: rgba(255,255,255,0.82);
+  }
+  .sw-checklist svg { flex: none; width: 18px; height: 18px; margin-top: 2px; color: var(--gold); }
+
+  .sw-alert-box {
+    background: rgba(200, 160, 74, 0.12);
+    border: 1px solid rgba(200, 160, 74, 0.4);
+    border-radius: var(--radius-card);
+    padding: 22px 24px;
+    font-size: 14.5px;
+    color: rgba(255,255,255,0.88);
+    margin-bottom: 20px;
+  }
+  .sw-alert-box strong { color: var(--gold); }
+
+  /* ---------- Daily content grid ---------- */
+  .sw-days-head { max-width: 620px; margin-bottom: 40px; }
+  .sw-days-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 900px) {
+    .sw-days-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 520px) {
+    .sw-days-grid { grid-template-columns: 1fr; }
+  }
+  .sw-day-card {
+    background: var(--bg-light);
+    border: 1px solid var(--border-hair);
+    border-radius: 12px;
+    padding: 20px;
+    transition: box-shadow 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+  }
+  .sw-day-card:hover { box-shadow: var(--shadow-card); transform: translateY(-2px); background: var(--white); }
+  .sw-day-card h3 { font-size: 15px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+  .sw-day-card p { font-size: 13.5px; color: var(--text-muted); }
+  .sw-days-cta { margin-top: 40px; text-align: center; }
+
+  /* ---------- Contact ---------- */
+  .sw-contact-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 48px;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .sw-contact-grid { grid-template-columns: 1fr; }
+  }
+  .sw-contact-copy p { margin-top: 14px; color: var(--text-muted); font-size: 16px; }
+  .sw-contact-copy .sw-h2 { margin-bottom: 6px; }
+
+  .sw-form-card {
+    background: var(--navy-deep);
+    color: var(--white);
+    border-radius: 18px;
+    padding: 34px;
+    box-shadow: 0 24px 48px rgba(3, 27, 58, 0.28);
+  }
+  .sw-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 560px) {
+    .sw-form-grid { grid-template-columns: 1fr; }
+  }
+  .sw-field { margin-bottom: 16px; }
+  .sw-field--full { grid-column: 1 / -1; }
+  .sw-field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: rgba(255,255,255,0.78);
+    margin-bottom: 7px;
+  }
+  .sw-field input,
+  .sw-field select,
+  .sw-field textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 9px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.06);
+    color: var(--white);
+  }
+  .sw-field input::placeholder,
+  .sw-field textarea::placeholder { color: rgba(255,255,255,0.35); }
+  .sw-field select { appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+  .sw-field select option { color: var(--text-body); }
+  .sw-field textarea { min-height: 96px; resize: vertical; }
+
+  .sw-field-error {
+    display: none;
+    margin-top: 6px;
+    font-size: 12.5px;
+    color: #FFB4A8;
+  }
+  .sw-field.has-error input,
+  .sw-field.has-error select,
+  .sw-field.has-error textarea { border-color: #FF8A75; }
+  .sw-field.has-error .sw-field-error { display: block; }
+
+  .sw-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.75);
+    margin: 6px 0 22px;
+  }
+  .sw-consent input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--gold); flex: none; }
+
+  .sw-form-msg {
+    display: none;
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    background: rgba(200, 160, 74, 0.15);
+    border: 1px solid rgba(200, 160, 74, 0.4);
+    color: var(--white);
+  }
+  .sw-form-msg.is-visible { display: block; }
+  .sw-form-msg.is-success { background: rgba(46, 124, 246, 0.18); border-color: rgba(46, 124, 246, 0.5); }
+
+  .sw-contact-email {
+    margin-top: 26px;
+    font-size: 14.5px;
+    color: var(--text-muted);
+  }
+  .sw-contact-email a { color: var(--royal); font-weight: 600; }
+
+  /* ---------- FAQ ---------- */
+  .sw-faq-head { max-width: 600px; margin-bottom: 36px; }
+  .sw-faq-list { max-width: 800px; }
+  .sw-faq-item {
+    border-bottom: 1px solid var(--border-hair);
+  }
+  .sw-faq-q {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 22px 4px;
+    cursor: pointer;
+    font-size: 16.5px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .sw-faq-icon {
+    flex: none;
+    width: 22px;
+    height: 22px;
+    position: relative;
+  }
+  .sw-faq-icon::before, .sw-faq-icon::after {
+    content: "";
+    position: absolute;
+    background: var(--royal);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .sw-faq-icon::before { width: 14px; height: 2px; }
+  .sw-faq-icon::after { width: 2px; height: 14px; }
+  .sw-faq-q[aria-expanded="true"] .sw-faq-icon::after { opacity: 0; }
+
+  .sw-faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+  }
+  .sw-faq-a-inner {
+    padding: 0 4px 22px;
+    color: var(--text-muted);
+    font-size: 15px;
+    max-width: 680px;
+  }
+
+  /* ---------- Final CTA ---------- */
+  .sw-final-cta {
+    text-align: center;
+    padding: 96px 0;
+  }
+  .sw-final-cta::before {
+    content: "";
+    display: block;
+    width: 64px;
+    height: 3px;
+    background: var(--gold);
+    margin: 0 auto 26px;
+    border-radius: 2px;
+  }
+  .sw-final-cta .sw-h2 { margin-bottom: 16px; }
+  .sw-final-cta p { max-width: 560px; margin: 10px auto 0; color: rgba(255,255,255,0.72); font-size: 16.5px; }
+  .sw-final-cta .sw-btn-row { justify-content: center; margin-top: 34px; }
+
+  /* ---------- Footer ---------- */
+  .sw-footer {
+    background: var(--navy-deep);
+    color: rgba(255,255,255,0.7);
+    padding: 60px 0 28px;
+  }
+  .sw-footer-top {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  @media (max-width: 760px) {
+    .sw-footer-top { grid-template-columns: 1fr; gap: 28px; }
+  }
+  .sw-footer-logo { color: var(--white); font-weight: 800; font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px; }
+  .sw-footer-top p { font-size: 14px; max-width: 320px; }
+  .sw-footer-col h4 { color: var(--white); font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 16px; }
+  .sw-footer-col li { margin-bottom: 10px; font-size: 14px; }
+  .sw-footer-col a:hover { color: var(--white); }
+  .sw-footer-social { display: flex; gap: 12px; margin-top: 18px; }
+  .sw-footer-social a {
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 50%;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+  .sw-footer-social a:hover { border-color: var(--gold); background: rgba(200,160,74,0.1); }
+  .sw-footer-social svg { width: 16px; height: 16px; }
+
+  .sw-footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 24px;
+    font-size: 13px;
+  }
+  .sw-footer-legal { display: flex; gap: 20px; flex-wrap: wrap; }
+
+  /* Utility: reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .sw-root * { transition: none !important; animation: none !important; }
+  }
+</style>
+
+<div class="sw-root">
+
+  <!-- ============ NAVIGATION ============ -->
+  <header class="sw-nav" id="swNav">
+    <div class="sw-nav-inner">
+      <a href="#top" class="sw-logo">THE SO WHAT <span>MOVEMENT</span></a>
+
+      <nav class="sw-nav-links" id="swNavLinks" aria-label="Primary">
+        <a href="#about" class="sw-nav-link">About</a>
+        <a href="#membership" class="sw-nav-link">Membership</a>
+        <a href="#big-move-fund" class="sw-nav-link">Big Move Fund</a>
+        <a href="https://www.amazon.com/So-What-Dont-Excuses-Moves/dp/B0GXFF5WJG" class="sw-nav-link">Order the Book</a>
+        <a href="#contact" class="sw-nav-link">Contact</a>
+        <!-- This button only shows inside the open mobile menu (hidden on desktop) -->
+        <a href="https://sowhatmovement.com/join?package=bronze" class="sw-btn sw-btn--gold sw-btn--sm sw-nav-mobile-cta">Join the Movement</a>
+      </nav>
+
+      <div class="sw-nav-cta">
+        <!-- This button only shows on desktop/tablet (hidden once the hamburger takes over) -->
+        <!-- REPLACE https://sowhatmovement.com/join?package=bronze with your membership signup link -->
+        <a href="https://sowhatmovement.com/join?package=bronze" class="sw-btn sw-btn--gold sw-btn--sm sw-nav-join">Join the Movement</a>
+        <button class="sw-hamburger" id="swHamburger" aria-expanded="false" aria-controls="swNavLinks" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ SECTION 1: HERO ============ -->
+    <section class="sw-hero">
+      <div class="sw-container sw-hero-inner">
+        <div>
+          <span class="sw-hero-label">Business Growth Community</span>
+          <h1 class="sw-hero-heading">It&rsquo;s Your Move.</h1>
+          <p class="sw-hero-lead">The So What Movement is a business growth community for aspiring and established entrepreneurs.</p>
+          <p class="sw-hero-sub">We help people build stronger business foundations, improve their marketing, access coaching and strategic connections, and prepare for their next stage of growth.</p>
+          <p class="sw-hero-sub">Whether you are developing an idea, launching a business, or working to grow what you have already built, you can find practical support, structure, and community here.</p>
+
+          <div class="sw-btn-row">
+            <!-- REPLACE https://sowhatmovement.com/join?package=bronze -->
+            <a href="https://sowhatmovement.com/join?package=bronze" class="sw-btn sw-btn--primary">Join the Movement</a>
+            <!-- Replace this Amazon link if the product page ever changes -->
+            <a href="https://www.amazon.com/So-What-Dont-Excuses-Moves/dp/B0GXFF5WJG" class="sw-btn sw-btn--outline-light">Order on Amazon</a>
+          </div>
+          <p class="sw-hero-trust">Open to entrepreneurs in Dallas Fort Worth and beyond.</p>
+        </div>
+
+        <div class="sw-hero-media">
+          <!-- Hero image: swap this URL any time you update the photo in Squarespace -->
+          <img class="sw-hero-img" src="https://orca-olive-l298.squarespace.com/config/asset-library/file-details/5e22936e-68d0-4b0d-9e86-a9b193ffe34d" alt="Curtis Lee Corbins, founder of The So What Movement">
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 2: THE GAP ============ -->
+    <section class="sw-section sw-section--light">
+      <div class="sw-container sw-gap-copy">
+        <h2 class="sw-h2">Starting is one step. Knowing what comes next is another.</h2>
+        <p>Many entrepreneurs have an idea, a product, a service, or early traction. They may have completed a cohort, attended events, started selling, or built a business plan.</p>
+        <p>The next stage can still be unclear. Questions about marketing, customers, funding readiness, pricing, business setup, and long-term growth are difficult to solve alone.</p>
+        <p class="sw-gap-bold">The So What Movement was created to give entrepreneurs a place to keep learning, receive support, and take practical next steps.</p>
+      </div>
+
+      <div class="sw-container sw-card-row">
+        <div class="sw-mini-card">
+          <h3>Clearer Direction</h3>
+          <p>Get support as you organize the next steps for your business.</p>
+        </div>
+        <div class="sw-mini-card">
+          <h3>Stronger Visibility</h3>
+          <p>Learn how to communicate your value and improve your marketing presence.</p>
+        </div>
+        <div class="sw-mini-card">
+          <h3>Meaningful Connection</h3>
+          <p>Connect with people who understand the work of building a business.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 3: WHAT MEMBERS CAN EXPECT ============ -->
+    <section class="sw-section sw-section--white" id="about">
+      <div class="sw-container">
+        <div class="sw-services-head">
+          <h2 class="sw-h2">Practical support for your next step</h2>
+          <p class="sw-lede">The So What Movement brings together encouragement, business learning, accountability, and connection.</p>
+        </div>
+
+        <div class="sw-service-grid">
+          <div class="sw-service-card">
+            <div class="sw-service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>
+            </div>
+            <h3>Business Foundation</h3>
+            <p>Organize the next steps for your business, whether you are still shaping an idea or already operating.</p>
+          </div>
+          <div class="sw-service-card">
+            <div class="sw-service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11 13.5V19a2 2 0 0 0 2 2h1"/></svg>
+            </div>
+            <h3>Marketing Support</h3>
+            <p>Learn how to explain what you offer, reach the right customers, and build stronger visibility.</p>
+          </div>
+          <div class="sw-service-card">
+            <div class="sw-service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            </div>
+            <h3>Coaching and Accountability</h3>
+            <p>Stay focused through regular guidance, feedback, and support designed to help you follow through.</p>
+          </div>
+          <div class="sw-service-card">
+            <div class="sw-service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/><circle cx="18" cy="8" r="3"/><path d="M22 21v-2a3.5 3.5 0 0 0-2.5-3.4"/></svg>
+            </div>
+            <h3>Networking and Connections</h3>
+            <p>Meet other entrepreneurs and connect with people who understand the challenges of building from the ground up.</p>
+          </div>
+          <div class="sw-service-card">
+            <div class="sw-service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </div>
+            <h3>Learning and Content</h3>
+            <p>Explore webinars, conversations, resources, and ongoing content that supports your progress.</p>
+          </div>
+          <div class="sw-service-card">
+            <div class="sw-service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <h3>Capital Readiness</h3>
+            <p>Build greater readiness for future business opportunities through preparation, coaching, and strategic support.</p>
+          </div>
+        </div>
+
+        <p class="sw-note-panel">The So What Movement provides access to support, resources, and opportunities. Results and eligibility vary based on individual participation and program requirements.</p>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 4: FOUNDER STORY ============ -->
+    <section class="sw-section sw-section--offwhite">
+      <div class="sw-container sw-split">
+        <div class="sw-split-media">
+          <div class="sw-founder-frame">
+            <!-- Magazine feature image: the only image used in this section -->
+            <img class="sw-founder-img" src="https://images.squarespace-cdn.com/content/682f59a12de6f2156dacf80c/fc165f98-2266-4b88-964f-21d9de451f12/curtis-corbins.webp?content-type=image%2Fwebp" alt="Southern Dallas Business and Living Magazine cover featuring Curtis Corbins and Cheaper Ride">
+          </div>
+        </div>
+        <div class="sw-founder-copy">
+          <span class="sw-eyebrow">About the Founder</span>
+          <h2 class="sw-h2">Built by someone who understands the gap</h2>
+          <p>The So What Movement was created by Curtis Lee Corbins, author, entrepreneur, transportation leader, and community advocate.</p>
+          <p>Through his work in transportation and through conversations with aspiring and established entrepreneurs, Curtis has seen how often people have strong ideas and real potential but still lack consistent guidance, marketing support, practical business resources, and the right connections.</p>
+          <p>The Movement was created to help people take the next step with more clarity, accountability, and support.</p>
+
+          <div class="sw-founder-callout">
+            <h4>Building opportunities that move communities forward</h4>
+            <p>Curtis&rsquo;s work across entrepreneurship, transportation, and community support informs the practical focus of The So What Movement.</p>
+          </div>
+
+          <div style="margin-top:28px;">
+            <a href="#membership" class="sw-btn sw-btn--outline-navy">Meet the Movement</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 5: THE BOOK ============ -->
+    <section class="sw-section sw-section--navy-deep" id="book">
+      <div class="sw-container sw-split">
+        <div class="sw-split-media">
+          <!-- Book cover image -->
+          <img class="sw-book-cover" src="https://images.squarespace-cdn.com/content/682f59a12de6f2156dacf80c/c68cc7e9-9558-4600-b40e-2a3cbf3025ee/IMG_5594.jpeg?content-type=image%2Fjpeg" alt="Cover of Life Be Lifing: So What? Don't Make Excuses, Make Moves by Curtis Lee Corbins">
+        </div>
+        <div class="sw-book-copy">
+          <span class="sw-eyebrow">The Book by Curtis Lee Corbins</span>
+          <h2 class="sw-h2" style="color:#fff;">Life Be Lifing. So What?</h2>
+          <p class="sw-book-sub">A motivational guide for people building through real obstacles.</p>
+          <p class="sw-body">Life and business can bring setbacks, uncertainty, financial pressure, and moments that test your confidence. This book is for people who want to keep moving forward without pretending those challenges are not real.</p>
+          <p class="sw-body">Curtis Lee Corbins shares a message rooted in resilience, mindset, planning, and taking the next practical step. It is written to encourage entrepreneurs and anyone working toward a meaningful goal.</p>
+
+          <div class="sw-quote-block">&ldquo;Don&rsquo;t Make Excuses. Make Moves.&rdquo;</div>
+
+          <h3 class="sw-moves-heading">The MOVES Framework</h3>
+          <div class="sw-moves-list">
+            <div class="sw-moves-item">
+              <span class="sw-moves-letter">M</span>
+              <div><h4>Map out the blueprint</h4><p>Create a clear direction for what you are building.</p></div>
+            </div>
+            <div class="sw-moves-item">
+              <span class="sw-moves-letter">O</span>
+              <div><h4>Observe and own the obstacles</h4><p>Recognize what is in front of you and identify what you can address.</p></div>
+            </div>
+            <div class="sw-moves-item">
+              <span class="sw-moves-letter">V</span>
+              <div><h4>Visualize the victories</h4><p>Stay connected to the progress and outcomes that matter to you.</p></div>
+            </div>
+            <div class="sw-moves-item">
+              <span class="sw-moves-letter">E</span>
+              <div><h4>Execute</h4><p>Take intentional action, even when every detail is not perfect.</p></div>
+            </div>
+            <div class="sw-moves-item">
+              <span class="sw-moves-letter">S</span>
+              <div><h4>Scale and sustain</h4><p>Build systems, habits, and support that can help you keep growing.</p></div>
+            </div>
+          </div>
+
+          <div class="sw-btn-row" style="margin-top:30px;">
+            <!-- Amazon is the primary book purchase path -->
+            <a href="https://www.amazon.com/So-What-Dont-Excuses-Moves/dp/B0GXFF5WJG" class="sw-btn sw-btn--gold">Order on Amazon</a>
+          </div>
+          <p class="sw-book-note">Order online through Amazon and have your copy shipped directly to you.</p>
+          <p class="sw-book-note">Read the message. Apply it to your next move.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 6: HOW MEMBERSHIP WORKS ============ -->
+    <section class="sw-section sw-section--white">
+      <div class="sw-container">
+        <div class="sw-steps-head">
+          <h2 class="sw-h2">How membership works</h2>
+          <p class="sw-lede">Start where you are and choose the level of support that fits your current stage.</p>
+        </div>
+
+        <div class="sw-steps-row">
+          <div class="sw-step">
+            <div class="sw-step-num">01</div>
+            <h3>Choose Your Starting Point</h3>
+            <p>Select the membership level that fits your needs, business stage, and desired level of support.</p>
+          </div>
+          <div class="sw-step">
+            <div class="sw-step-num">02</div>
+            <h3>Access the Movement</h3>
+            <p>Receive information about available content, community activities, coaching opportunities, and member resources.</p>
+          </div>
+          <div class="sw-step">
+            <div class="sw-step-num">03</div>
+            <h3>Build at Your Pace</h3>
+            <p>Use the resources and connections that are useful for your current goals, whether you have an idea or an existing business.</p>
+          </div>
+          <div class="sw-step">
+            <div class="sw-step-num">04</div>
+            <h3>Explore Future Opportunities</h3>
+            <p>Eligible members can learn about future pitch competitions, events, and business growth opportunities.</p>
+          </div>
+        </div>
+
+        <div class="sw-steps-cta">
+          <!-- REPLACE https://sowhatmovement.com/join?package=bronze -->
+          <a href="https://sowhatmovement.com/join?package=bronze" class="sw-btn sw-btn--primary">View Membership Options</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 7: MEMBERSHIP ============ -->
+    <section class="sw-section sw-section--offwhite" id="membership">
+      <div class="sw-container">
+        <div class="sw-pricing-head">
+          <span class="sw-eyebrow" style="color:var(--gold);">Membership Options</span>
+          <h2 class="sw-h2">Choose your level. Make your move.</h2>
+          <p class="sw-lede" style="margin:12px auto 0;">Start where you are. Choose more support when you are ready for it.</p>
+        </div>
+
+        <div class="sw-pricing-grid">
+          <div class="sw-price-card">
+            <span class="sw-price-label">BRONZE</span>
+            <h3>Start Your Move</h3>
+            <p class="sw-price-amount">Price to be announced</p>
+            <p class="sw-price-best">A free starting point for people getting familiar with the Movement.</p>
+            <ul class="sw-price-includes">
+              <li>Foundational content</li>
+              <li>Community updates</li>
+              <li>Introduction to the Movement</li>
+            </ul>
+            <a href="https://sowhatmovement.com/join?package=bronze" class="sw-btn sw-btn--outline-navy">Start with Bronze</a>
+          </div>
+
+          <div class="sw-price-card">
+            <span class="sw-price-label">SILVER</span>
+            <h3>Build Consistency</h3>
+            <p class="sw-price-amount">Price to be announced</p>
+            <p class="sw-price-best">For entrepreneurs who want more consistency, connection, and accountability.</p>
+            <ul class="sw-price-includes">
+              <li>Expanded content access</li>
+              <li>Community opportunities</li>
+              <li>Networking access</li>
+              <li>Regular encouragement</li>
+            </ul>
+            <a href="https://sowhatmovement.com/join?package=bronze" class="sw-btn sw-btn--outline-navy">Choose Silver</a>
+          </div>
+
+          <div class="sw-price-card sw-price-card--featured">
+            <span class="sw-price-badge">Most Popular</span>
+            <span class="sw-price-label">GOLD</span>
+            <h3>Build and Prepare</h3>
+            <p class="sw-price-amount">Price to be announced</p>
+            <p class="sw-price-best">For entrepreneurs looking for deeper business focused support.</p>
+            <ul class="sw-price-includes">
+              <li>Enhanced support and resources</li>
+              <li>Coaching opportunities</li>
+              <li>Business growth guidance</li>
+              <li>Ability to work toward Big Move Fund eligibility</li>
+            </ul>
+            <a href="https://sowhatmovement.com/join?package=bronze" class="sw-btn sw-btn--primary">Choose Gold</a>
+          </div>
+
+          <div class="sw-price-card">
+            <span class="sw-price-label">PLATINUM</span>
+            <h3>Scale Your Move</h3>
+            <p class="sw-price-amount">Price to be announced</p>
+            <p class="sw-price-best">For entrepreneurs seeking the highest level of support and growth opportunities.</p>
+            <ul class="sw-price-includes">
+              <li>Expanded business support</li>
+              <li>Strategic resources</li>
+              <li>Advanced growth opportunities</li>
+              <li>Ability to work toward Platinum Big Move Fund eligibility</li>
+            </ul>
+            <a href="https://sowhatmovement.com/join?package=bronze" class="sw-btn sw-btn--outline-navy">Choose Platinum</a>
+          </div>
+        </div>
+
+        <div class="sw-eligibility-panel">
+          <div>
+            <h3>Big Move Fund eligibility</h3>
+            <p>Big Move Fund consideration is available only to eligible Gold and Platinum members. Members must maintain an active membership for at least three months and meet all program requirements before applying.</p>
+          </div>
+          <!-- Competition rules page -->
+          <a href="https://sowhatmovement.com/rules" class="sw-btn sw-btn--outline-light sw-btn--sm">Review Competition Requirements</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 8: BIG MOVE FUND ============ -->
+    <section class="sw-section sw-section--navy" id="big-move-fund">
+      <div class="sw-container">
+        <div class="sw-bmf-layout">
+          <div class="sw-bmf-content">
+            <div class="sw-bmf-head">
+              <span class="sw-eyebrow">Quarterly Pitch Opportunity</span>
+              <h2 class="sw-h2">The Big Move Fund</h2>
+              <p class="sw-bmf-lead">The Big Move Fund is a quarterly pitch opportunity for eligible Gold and Platinum members.</p>
+              <p class="sw-bmf-body">It is designed for entrepreneurs who are ready to present their business, explain their growth plans, receive feedback, and participate in a structured coaching process.</p>
+              <p class="sw-bmf-body">Selected participants may receive capital and ongoing coaching to support their growth plans. Funding terms may include an equity interest in the selected business.</p>
+            </div>
+
+            <div class="sw-bmf-grid">
+              <div class="sw-checklist-card">
+                <h3>Before You Apply</h3>
+                <ul class="sw-checklist">
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> You must be an active Gold or Platinum member</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> You must maintain membership for at least three months</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> You must meet the official eligibility and application requirements</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Funding is not guaranteed</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Selected businesses may be required to participate in coaching</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Funding terms may include equity</li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="sw-alert-box">
+                  <strong>Timing:</strong> The next pitch competition is expected in December. Date and venue will be announced once confirmed.
+                </div>
+                <div class="sw-btn-row">
+                  <!-- Competition rules page -->
+                  <a href="https://sowhatmovement.com/rules" class="sw-btn sw-btn--gold">Learn About the Big Move Fund</a>
+                  <a href="#contact" class="sw-btn sw-btn--outline-light">Submit an Inquiry</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sw-bmf-flyer">
+            <!-- Pitch competition flyer image -->
+            <img src="https://images.squarespace-cdn.com/content/682f59a12de6f2156dacf80c/39c20fd4-bc6b-4455-9cc3-5352ea3c17dd/join-banner.webp?content-type=image%2Fwebp" alt="Promotional flyer for The So What Movement featuring Curtis Lee Corbins, membership benefits, and quarterly pitch competition information">
+            <p class="sw-flyer-caption sw-flyer-caption--light">Competition opportunities are subject to membership eligibility, official rules, and program requirements.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 9: DAILY CONTENT ============ -->
+    <section class="sw-section sw-section--white">
+      <div class="sw-container">
+        <div class="sw-days-head">
+          <h2 class="sw-h2">Support that stays with you through the week</h2>
+          <p class="sw-lede">Growth is built through consistent attention. The So What Movement provides ongoing content to help members stay focused, encouraged, and connected.</p>
+        </div>
+
+        <div class="sw-days-grid">
+          <div class="sw-day-card"><h3>Mindset Monday</h3><p>Start the week with clarity and purpose.</p></div>
+          <div class="sw-day-card"><h3>Tackling Tuesday</h3><p>Focus on the task or obstacle in front of you.</p></div>
+          <div class="sw-day-card"><h3>Wakeup Wednesday</h3><p>Reset your focus and continue moving forward.</p></div>
+          <div class="sw-day-card"><h3>Terrific Thursday</h3><p>Learn, connect, and take practical action.</p></div>
+          <div class="sw-day-card"><h3>Fabulous Friday</h3><p>Reflect on progress and close the week with intention.</p></div>
+          <div class="sw-day-card"><h3>Soak It In Saturday</h3><p>Make space for lessons that support your growth.</p></div>
+          <div class="sw-day-card"><h3>Super Sunday</h3><p>Prepare your mindset for the week ahead.</p></div>
+        </div>
+
+        <div class="sw-days-cta">
+          <a href="https://sowhatmovement.com/join?package=bronze" class="sw-btn sw-btn--primary">Explore Membership</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 10: CONTACT ============ -->
+    <section class="sw-section sw-section--light" id="contact">
+      <div class="sw-container sw-contact-grid">
+        <div class="sw-contact-copy">
+          <span class="sw-eyebrow" style="color:var(--royal);">Contact the Team</span>
+          <h2 class="sw-h2">Tell us where you are in your journey</h2>
+          <p>Every entrepreneur starts from a different place. Share a little about your business, idea, or current goals, and a member of The So What Movement team will follow up with you by email.</p>
+          <p>You can use this form to ask about membership, coaching, events, the book, partnerships, or future business growth opportunities.</p>
+
+          <p class="sw-contact-email">
+            Email: <a href="mailto:contact@sowhatmovement.com">contact@sowhatmovement.com</a>
+          </p>
+        </div>
+
+        <div class="sw-form-card">
+          <!--
+            REPLACE [FORM_SUBMISSION_URL] with your Formspree endpoint,
+            Squarespace form endpoint, or preferred form service endpoint.
+            Until it is replaced, the script below intercepts submission
+            and shows a setup message instead of pretending to send it.
+          -->
+          <form id="movement-contact-form" action="[FORM_SUBMISSION_URL]" method="POST" novalidate>
+            <div class="sw-form-grid">
+              <div class="sw-field sw-field--full">
+                <label for="sw-name">Full Name</label>
+                <input type="text" id="sw-name" name="full_name" required autocomplete="name">
+                <p class="sw-field-error">Please enter your full name.</p>
+              </div>
+
+              <div class="sw-field">
+                <label for="sw-email">Email Address</label>
+                <input type="email" id="sw-email" name="email" required autocomplete="email">
+                <p class="sw-field-error">Please enter a valid email address.</p>
+              </div>
+
+              <div class="sw-field">
+                <label for="sw-phone">Phone Number <span style="opacity:.6;">(optional)</span></label>
+                <input type="tel" id="sw-phone" name="phone" autocomplete="tel">
+              </div>
+
+              <div class="sw-field sw-field--full">
+                <label for="sw-city">City and State</label>
+                <input type="text" id="sw-city" name="city_state" required autocomplete="address-level2" placeholder="e.g. Dallas, TX">
+                <p class="sw-field-error">Please enter your city and state.</p>
+              </div>
+
+              <div class="sw-field sw-field--full">
+                <label for="sw-business">Business Name <span style="opacity:.6;">(optional)</span></label>
+                <input type="text" id="sw-business" name="business_name">
+              </div>
+
+              <div class="sw-field sw-field--full">
+                <label for="sw-stage">Business Stage</label>
+                <select id="sw-stage" name="business_stage" required>
+                  <option value="" disabled selected>Select one</option>
+                  <option>I am exploring a business idea</option>
+                  <option>I am getting ready to launch</option>
+                  <option>I recently launched my business</option>
+                  <option>I am growing an existing business</option>
+                  <option>I am looking for support with my next stage</option>
+                </select>
+                <p class="sw-field-error">Please select a business stage.</p>
+              </div>
+
+              <div class="sw-field sw-field--full">
+                <label for="sw-industry">Industry</label>
+                <input type="text" id="sw-industry" name="industry" required>
+                <p class="sw-field-error">Please enter your industry.</p>
+              </div>
+
+              <div class="sw-field sw-field--full">
+                <label for="sw-support">What support would be most helpful right now?</label>
+                <select id="sw-support" name="support_needed" required>
+                  <option value="" disabled selected>Select one</option>
+                  <option>Membership information</option>
+                  <option>Marketing and visibility</option>
+                  <option>Business foundation and setup</option>
+                  <option>Coaching and accountability</option>
+                  <option>Networking and connections</option>
+                  <option>The Big Move Fund</option>
+                  <option>Events</option>
+                  <option>The book</option>
+                  <option>Partnership or collaboration</option>
+                  <option>Other</option>
+                </select>
+                <p class="sw-field-error">Please select what support you need.</p>
+              </div>
+
+              <div class="sw-field sw-field--full">
+                <label for="sw-goal">What is one goal you are currently working toward?</label>
+                <textarea id="sw-goal" name="current_goal" required></textarea>
+                <p class="sw-field-error">Please share one goal you are working toward.</p>
+              </div>
+
+              <div class="sw-field sw-field--full">
+                <label for="sw-notes">Anything else you would like the team to know? <span style="opacity:.6;">(optional)</span></label>
+                <textarea id="sw-notes" name="additional_notes"></textarea>
+              </div>
+            </div>
+
+            <div class="sw-field sw-field--full sw-consent-wrap">
+              <div class="sw-consent">
+                <input type="checkbox" id="sw-consent" name="consent" required>
+                <label for="sw-consent" style="margin:0;color:inherit;">I agree to be contacted by The So What Movement about my inquiry and relevant updates.</label>
+              </div>
+              <p class="sw-field-error" id="sw-consent-error">Please confirm you agree to be contacted.</p>
+            </div>
+
+            <button type="submit" class="sw-btn sw-btn--gold" style="width:100%;">Send My Information</button>
+
+            <div class="sw-form-msg" id="swFormMsg" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 11: FAQ ============ -->
+    <section class="sw-section sw-section--white">
+      <div class="sw-container">
+        <div class="sw-faq-head">
+          <h2 class="sw-h2">Questions before you join?</h2>
+        </div>
+
+        <div class="sw-faq-list" id="swFaqList">
+          <div class="sw-faq-item">
+            <button class="sw-faq-q" aria-expanded="false">
+              Do I need to live in Dallas Fort Worth to join?
+              <span class="sw-faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="sw-faq-a">
+              <p class="sw-faq-a-inner">No. The So What Movement welcomes entrepreneurs in Dallas Fort Worth and beyond.</p>
+            </div>
+          </div>
+
+          <div class="sw-faq-item">
+            <button class="sw-faq-q" aria-expanded="false">
+              Do I need to already own a business?
+              <span class="sw-faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="sw-faq-a">
+              <p class="sw-faq-a-inner">No. Aspiring entrepreneurs are welcome. The Movement is designed to support people who are starting as well as people who are growing an existing business.</p>
+            </div>
+          </div>
+
+          <div class="sw-faq-item">
+            <button class="sw-faq-q" aria-expanded="false">
+              What is the difference between the book and membership?
+              <span class="sw-faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="sw-faq-a">
+              <p class="sw-faq-a-inner">The book introduces the mindset and MOVES Framework. Membership provides community, content, accountability, support, and business growth opportunities that can help you apply those ideas.</p>
+            </div>
+          </div>
+
+          <div class="sw-faq-item">
+            <button class="sw-faq-q" aria-expanded="false">
+              Can every member enter the Big Move Fund pitch competition?
+              <span class="sw-faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="sw-faq-a">
+              <p class="sw-faq-a-inner">No. Big Move Fund consideration is limited to eligible Gold and Platinum members who have maintained active membership for at least three months and meet all additional program requirements.</p>
+            </div>
+          </div>
+
+          <div class="sw-faq-item">
+            <button class="sw-faq-q" aria-expanded="false">
+              Is the Big Move Fund a grant?
+              <span class="sw-faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="sw-faq-a">
+              <p class="sw-faq-a-inner">The Big Move Fund is a pitch based capital and coaching opportunity. Funding terms may include an equity interest in the selected business. Review the official rules and funding terms before applying.</p>
+            </div>
+          </div>
+
+          <div class="sw-faq-item">
+            <button class="sw-faq-q" aria-expanded="false">
+              What happens after I join?
+              <span class="sw-faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="sw-faq-a">
+              <p class="sw-faq-a-inner">You will receive membership onboarding information and details about available content, community activities, events, and next steps.</p>
+            </div>
+          </div>
+
+          <div class="sw-faq-item">
+            <button class="sw-faq-q" aria-expanded="false">
+              How can I contact the team?
+              <span class="sw-faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="sw-faq-a">
+              <p class="sw-faq-a-inner">Use the contact form above or email <a href="mailto:contact@sowhatmovement.com" style="color:var(--royal);font-weight:600;">contact@sowhatmovement.com</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 12: FINAL CTA ============ -->
+    <section class="sw-section--navy sw-final-cta">
+      <div class="sw-container">
+        <h2 class="sw-h2">Take the next step when you are ready.</h2>
+        <p>The So What Movement is here to support entrepreneurs who want more clarity, connection, and practical guidance as they build.</p>
+        <p>Start by exploring the Movement, purchasing the book, or sharing where you are in your journey.</p>
+
+        <div class="sw-btn-row">
+          <a href="https://sowhatmovement.com/join?package=bronze" class="sw-btn sw-btn--gold">Join the Movement</a>
+          <a href="https://www.amazon.com/So-What-Dont-Excuses-Moves/dp/B0GXFF5WJG" class="sw-btn sw-btn--outline-light">Order on Amazon</a>
+          <a href="#contact" class="sw-btn sw-btn--outline-light">Contact the Team</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ SECTION 13: FOOTER ============ -->
+  <footer class="sw-footer">
+    <div class="sw-container">
+      <div class="sw-footer-top">
+        <div>
+          <div class="sw-footer-logo">The So What Movement</div>
+          <p>Practical support, community, and opportunities for entrepreneurs ready to make their next move.</p>
+          <div class="sw-footer-social">
+            <!-- REPLACE href values with your social profile URLs -->
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="white"/></svg></a>
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M14 9h3V5h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V9a1 1 0 0 1 1-1z"/></svg></a>
+            <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="8" y1="11" x2="8" y2="16"/><line x1="8" y1="8" x2="8" y2="8"/><path d="M12 16v-3a2 2 0 0 1 4 0v3"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><rect x="3" y="6" width="18" height="12" rx="3"/><polygon points="10 9 15 12 10 15" fill="white" stroke="none"/></svg></a>
+          </div>
+        </div>
+
+        <div class="sw-footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#membership">Membership</a></li>
+            <li><a href="#big-move-fund">Big Move Fund</a></li>
+            <li><a href="https://www.amazon.com/So-What-Dont-Excuses-Moves/dp/B0GXFF5WJG">Order the Book</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="sw-footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:contact@sowhatmovement.com">contact@sowhatmovement.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sw-footer-bottom">
+        <span>&copy; 2026 The So What Movement. All rights reserved.</span>
+        <div class="sw-footer-legal">
+          <!-- REPLACE legal links if URLs change -->
+          <a href="https://sowhatmovement.com/privacy">Privacy Policy</a>
+          <a href="https://sowhatmovement.com/terms">Terms</a>
+          <a href="https://sowhatmovement.com/rules">Competition Rules</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var root = document.currentScript ? document.currentScript.previousElementSibling : null;
+
+  /* ---------- Sticky nav compact state ---------- */
+  var nav = document.getElementById("swNav");
+  function onScroll() {
+    if (!nav) return;
+    if (window.scrollY > 24) {
+      nav.classList.add("is-scrolled");
+    } else {
+      nav.classList.remove("is-scrolled");
+    }
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- Mobile hamburger menu ---------- */
+  var hamburger = document.getElementById("swHamburger");
+  var navLinks = document.getElementById("swNavLinks");
+
+  function closeMenu() {
+    if (!hamburger || !navLinks) return;
+    hamburger.setAttribute("aria-expanded", "false");
+    hamburger.setAttribute("aria-label", "Open menu");
+    navLinks.classList.remove("is-open");
+  }
+  function openMenu() {
+    if (!hamburger || !navLinks) return;
+    hamburger.setAttribute("aria-expanded", "true");
+    hamburger.setAttribute("aria-label", "Close menu");
+    navLinks.classList.add("is-open");
+  }
+  if (hamburger && navLinks) {
+    hamburger.addEventListener("click", function () {
+      var isOpen = hamburger.getAttribute("aria-expanded") === "true";
+      if (isOpen) { closeMenu(); } else { openMenu(); }
+    });
+    navLinks.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", closeMenu);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") { closeMenu(); hamburger.focus(); }
+    });
+  }
+
+  /* ---------- Smooth scroll for internal anchors ---------- */
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      var targetId = link.getAttribute("href");
+      if (!targetId || targetId === "#") return;
+      var target = document.querySelector(targetId);
+      if (!target) return;
+      e.preventDefault();
+      var navHeight = nav ? nav.offsetHeight : 0;
+      var top = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 12;
+      window.scrollTo({ top: top, behavior: "smooth" });
+      if (history.pushState) { history.pushState(null, "", targetId); }
+    });
+  });
+
+  /* ---------- FAQ accordion ---------- */
+  var faqButtons = document.querySelectorAll(".sw-faq-q");
+  faqButtons.forEach(function (btn) {
+    var answer = btn.nextElementSibling;
+    btn.addEventListener("click", function () {
+      var isOpen = btn.getAttribute("aria-expanded") === "true";
+      // Close all
+      faqButtons.forEach(function (other) {
+        other.setAttribute("aria-expanded", "false");
+        var otherAnswer = other.nextElementSibling;
+        if (otherAnswer) { otherAnswer.style.maxHeight = null; }
+      });
+      // Open clicked one if it was closed
+      if (!isOpen) {
+        btn.setAttribute("aria-expanded", "true");
+        if (answer) { answer.style.maxHeight = answer.scrollHeight + "px"; }
+      }
+    });
+  });
+
+  /* ---------- Contact form validation + submission handling ---------- */
+  var form = document.getElementById("movement-contact-form");
+  var formMsg = document.getElementById("swFormMsg");
+
+  function showFieldError(fieldWrap, show) {
+    if (!fieldWrap) return;
+    if (show) {
+      fieldWrap.classList.add("has-error");
+    } else {
+      fieldWrap.classList.remove("has-error");
+    }
+  }
+
+  function validateForm() {
+    var valid = true;
+    var requiredFields = [
+      { id: "sw-name", wrap: document.getElementById("sw-name").closest(".sw-field") },
+      { id: "sw-email", wrap: document.getElementById("sw-email").closest(".sw-field") },
+      { id: "sw-city", wrap: document.getElementById("sw-city").closest(".sw-field") },
+      { id: "sw-stage", wrap: document.getElementById("sw-stage").closest(".sw-field") },
+      { id: "sw-industry", wrap: document.getElementById("sw-industry").closest(".sw-field") },
+      { id: "sw-support", wrap: document.getElementById("sw-support").closest(".sw-field") },
+      { id: "sw-goal", wrap: document.getElementById("sw-goal").closest(".sw-field") }
+    ];
+
+    requiredFields.forEach(function (f) {
+      var el = document.getElementById(f.id);
+      var ok = el.value && el.value.trim().length > 0;
+      if (f.id === "sw-email" && ok) {
+        ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
+      }
+      showFieldError(f.wrap, !ok);
+      if (!ok) { valid = false; }
+    });
+
+    var consent = document.getElementById("sw-consent");
+    var consentWrap = document.querySelector(".sw-consent-wrap");
+    if (!consent.checked) {
+      showFieldError(consentWrap, true);
+      valid = false;
+    } else {
+      showFieldError(consentWrap, false);
+    }
+
+    return valid;
+  }
+
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      var isValid = validateForm();
+      if (!isValid) {
+        e.preventDefault();
+        if (formMsg) {
+          formMsg.textContent = "Please complete the required fields before submitting.";
+          formMsg.classList.remove("is-success");
+          formMsg.classList.add("is-visible");
+        }
+        return;
+      }
+
+      var actionUrl = form.getAttribute("action") || "";
+      var isPlaceholder = actionUrl.indexOf("[FORM_SUBMISSION_URL]") !== -1 || actionUrl.trim() === "";
+
+      if (isPlaceholder) {
+        // Endpoint not connected yet: show a clear demo message instead of
+        // pretending the inquiry was sent.
+        e.preventDefault();
+        if (formMsg) {
+          formMsg.textContent = "Form setup is not complete yet. Please connect this form to your preferred email or form service before publishing.";
+          formMsg.classList.remove("is-success");
+          formMsg.classList.add("is-visible");
+        }
+      }
+      // If the action URL has been replaced with a real endpoint, the form
+      // submits normally.
+    });
+
+    // Clear individual field errors as the user corrects them
+    form.querySelectorAll("input, select, textarea").forEach(function (el) {
+      el.addEventListener("input", function () {
+        var wrap = el.closest(".sw-field");
+        if (wrap && wrap.classList.contains("has-error") && el.value.trim().length > 0) {
+          wrap.classList.remove("has-error");
+        }
+      });
+      el.addEventListener("change", function () {
+        var wrap = el.closest(".sw-field");
+        if (wrap && wrap.classList.contains("has-error") && el.value && el.value.trim().length > 0) {
+          wrap.classList.remove("has-error");
+        }
+      });
+    });
+  }
+})();
+</script>
